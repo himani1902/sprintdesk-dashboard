@@ -1,0 +1,691 @@
+{
+  "users": [
+    {
+      "id": "usr-1",
+      "name": "Emily Smith",
+      "email": "emily.smith@grubpac.com",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+      "role": "Lead Frontend Engineer"
+    },
+    {
+      "id": "usr-2",
+      "name": "Alex Rivera",
+      "email": "alex.rivera@grubpac.com",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "role": "Senior Fullstack Engineer"
+    },
+    {
+      "id": "usr-3",
+      "name": "Sarah Chen",
+      "email": "sarah.chen@grubpac.com",
+      "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+      "role": "UI/UX Designer"
+    },
+    {
+      "id": "usr-4",
+      "name": "David Marcus",
+      "email": "david.marcus@grubpac.com",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+      "role": "DevOps Specialist"
+    },
+    {
+      "id": "usr-5",
+      "name": "Priya Patel",
+      "email": "priya.patel@grubpac.com",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "role": "QA Automation Lead"
+    }
+  ],
+  "sprints": [
+    { "id": "sprint-21", "name": "Sprint 21 — Authentication Core", "startDate": "2026-07-01", "endDate": "2026-07-14", "status": "completed" },
+    { "id": "sprint-22", "name": "Sprint 22 — Data Visualization", "startDate": "2026-07-15", "endDate": "2026-07-28", "status": "completed" },
+    { "id": "sprint-23", "name": "Sprint 23 — Component Library", "startDate": "2026-07-29", "endDate": "2026-08-11", "status": "completed" },
+    { "id": "sprint-24", "name": "Sprint 24 — Real-time & Drag Drop", "startDate": "2026-08-12", "endDate": "2026-08-25", "status": "active" }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-101",
+      "title": "Implement JWT Token Auto-Refresh Interceptor",
+      "description": "Create an API interceptor in Axios/Fetch client to automatically refresh expired access tokens using the refresh token endpoint without interrupting user session.",
+      "status": "in_progress",
+      "priority": "urgent",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 5,
+      "dueDate": "2026-08-24",
+      "createdAt": "2026-08-12T09:00:00Z",
+      "completedAt": null,
+      "tags": ["Auth", "Security", "API"],
+      "comments": [
+        {
+          "id": "cmt-101-1",
+          "author": { "name": "Alex Rivera", "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" },
+          "content": "Make sure to queue concurrent requests while the refresh token call is in flight.",
+          "createdAt": "2026-08-13T10:15:00Z"
+        }
+      ]
+    },
+    {
+      "id": "TASK-102",
+      "title": "Build Accessible Modal & Dialog Backdrop",
+      "description": "Construct reusable Modal component with focus-trapping, ARIA roles (dialog, aria-modal), ESC key handling, and seamless backdrop click close.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-3",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+        "role": "UI/UX Designer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-23",
+      "createdAt": "2026-08-12T10:30:00Z",
+      "completedAt": null,
+      "tags": ["Design System", "A11y", "UI"],
+      "comments": []
+    },
+    {
+      "id": "TASK-103",
+      "title": "Configure @dnd-kit Core Drag and Drop Sensors",
+      "description": "Integrate PointerSensor and KeyboardSensor in Kanban board to enable smooth touch, mouse, and keyboard accessible task reordering.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 8,
+      "dueDate": "2026-08-25",
+      "createdAt": "2026-08-13T08:45:00Z",
+      "completedAt": null,
+      "tags": ["Kanban", "DND", "Interactive"],
+      "comments": [
+        {
+          "id": "cmt-103-1",
+          "author": { "name": "Emily Smith", "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80" },
+          "content": "Add drag overlay preview so cards don't jitter during dragging.",
+          "createdAt": "2026-08-14T11:20:00Z"
+        }
+      ]
+    },
+    {
+      "id": "TASK-104",
+      "title": "Set up Polling for Real-Time Notification Bell",
+      "description": "Poll JSONPlaceholder posts endpoint every 15s. Generate notifications, update unread count badge, and pause polling when document.hidden is true.",
+      "status": "in_progress",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-24",
+      "createdAt": "2026-08-13T14:00:00Z",
+      "completedAt": null,
+      "tags": ["Notifications", "Polling", "Zustand"],
+      "comments": []
+    },
+    {
+      "id": "TASK-105",
+      "title": "Construct Velocity & Status Charts using Recharts",
+      "description": "Develop dynamic Analytics charts (Velocity Bar Chart, Status Distribution Donut Chart, Priority Stacked Bar, Completion Trend) bound to active board state.",
+      "status": "review",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 5,
+      "dueDate": "2026-08-22",
+      "createdAt": "2026-08-14T09:15:00Z",
+      "completedAt": null,
+      "tags": ["Analytics", "Recharts", "Data Viz"],
+      "comments": []
+    },
+    {
+      "id": "TASK-106",
+      "title": "Write Unit Tests for Zustand Board Store Operations",
+      "description": "Implement complete test coverage for board store actions: addTask, moveTask across columns, deleteTask, and undoing last drag operation.",
+      "status": "review",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-5",
+        "name": "Priya Patel",
+        "email": "priya.patel@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+        "role": "QA Automation Lead"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-23",
+      "createdAt": "2026-08-14T13:30:00Z",
+      "completedAt": null,
+      "tags": ["Testing", "Vitest", "Zustand"],
+      "comments": []
+    },
+    {
+      "id": "TASK-107",
+      "title": "Optimize Responsive Viewports & Mobile Breakpoints",
+      "description": "Audit and refine UI layouts down to 375px mobile viewports ensuring Kanban board scrolls horizontally and analytics charts scale fluidly.",
+      "status": "review",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-3",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+        "role": "UI/UX Designer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 2,
+      "dueDate": "2026-08-22",
+      "createdAt": "2026-08-15T10:00:00Z",
+      "completedAt": null,
+      "tags": ["CSS", "Responsive", "Mobile"],
+      "comments": []
+    },
+    {
+      "id": "TASK-108",
+      "title": "Dark Mode & Theme Context Switcher",
+      "description": "Implement theme store managing light/dark mode preference with localStorage persistence and system color scheme fallback.",
+      "status": "done",
+      "priority": "low",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-23",
+      "estimatePoints": 2,
+      "dueDate": "2026-08-10",
+      "createdAt": "2026-08-01T09:00:00Z",
+      "completedAt": "2026-08-09T16:20:00Z",
+      "tags": ["Theme", "Tailwind", "UI"],
+      "comments": []
+    },
+    {
+      "id": "TASK-109",
+      "title": "Design System Button & Input Component Tokens",
+      "description": "Establish Tailwind design tokens, typography scale, color palette, and reusable Button/Input components with full state variants.",
+      "status": "done",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-3",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+        "role": "UI/UX Designer"
+      },
+      "sprintId": "sprint-23",
+      "estimatePoints": 5,
+      "dueDate": "2026-08-05",
+      "createdAt": "2026-07-29T10:00:00Z",
+      "completedAt": "2026-08-04T15:00:00Z",
+      "tags": ["Design System", "Tailwind"],
+      "comments": []
+    },
+    {
+      "id": "TASK-110",
+      "title": "User Session Persistence & LocalStorage Encryption",
+      "description": "Ensure refresh token and user auth state persist safely across browser tabs and page reloads.",
+      "status": "done",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-21",
+      "estimatePoints": 3,
+      "dueDate": "2026-07-12",
+      "createdAt": "2026-07-02T11:00:00Z",
+      "completedAt": "2026-07-11T14:30:00Z",
+      "tags": ["Auth", "Security"],
+      "comments": []
+    },
+    {
+      "id": "TASK-111",
+      "title": "Implement Analytics Chart Image Export (PNG)",
+      "description": "Add feature allowing users to download high-resolution PNG snapshot of active Analytics report graphs.",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-26",
+      "createdAt": "2026-08-16T09:00:00Z",
+      "completedAt": null,
+      "tags": ["Analytics", "Export", "Bonus"],
+      "comments": []
+    },
+    {
+      "id": "TASK-112",
+      "title": "Kanban Board Drag-and-Drop Undo Mechanism",
+      "description": "Provide a 6-second notification toast after task drop allowing single-click rollback of card placement.",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-26",
+      "createdAt": "2026-08-16T10:15:00Z",
+      "completedAt": null,
+      "tags": ["Kanban", "UX", "Bonus"],
+      "comments": []
+    },
+    {
+      "id": "TASK-113",
+      "title": "CI/CD Pipeline Integration & GitHub Actions Workflow",
+      "description": "Configure GitHub Actions workflow for linting, type-checking, running Vitest test suite, and validating production Vite bundle build.",
+      "status": "backlog",
+      "priority": "low",
+      "assignee": {
+        "id": "usr-4",
+        "name": "David Marcus",
+        "email": "david.marcus@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+        "role": "DevOps Specialist"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 2,
+      "dueDate": "2026-08-27",
+      "createdAt": "2026-08-17T08:30:00Z",
+      "completedAt": null,
+      "tags": ["DevOps", "CI/CD"],
+      "comments": []
+    },
+    {
+      "id": "TASK-114",
+      "title": "DataTable Pagination & Sorting Component",
+      "description": "Create a reusable accessible DataTable with column sorting triggers, custom row rendering, and pagination control.",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-3",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+        "role": "UI/UX Designer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 5,
+      "dueDate": "2026-08-27",
+      "createdAt": "2026-08-17T11:00:00Z",
+      "completedAt": null,
+      "tags": ["Design System", "Table"],
+      "comments": []
+    },
+    {
+      "id": "TASK-115",
+      "title": "Password Strength Calculation Metric",
+      "description": "Add dynamic password complexity calculation (length, uppercase, numbers, special characters) to login component.",
+      "status": "done",
+      "priority": "low",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-21",
+      "estimatePoints": 1,
+      "dueDate": "2026-07-10",
+      "createdAt": "2026-07-03T14:00:00Z",
+      "completedAt": "2026-07-09T11:15:00Z",
+      "tags": ["Auth", "UX"],
+      "comments": []
+    },
+    {
+      "id": "TASK-116",
+      "title": "Setup TanStack Query v5 Cache Configuration",
+      "description": "Configure query client with global retry settings, stale times, and refetch on window focus toggles.",
+      "status": "done",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-22",
+      "estimatePoints": 3,
+      "dueDate": "2026-07-20",
+      "createdAt": "2026-07-16T10:00:00Z",
+      "completedAt": "2026-07-19T17:00:00Z",
+      "tags": ["React Query", "Architecture"],
+      "comments": []
+    },
+    {
+      "id": "TASK-117",
+      "title": "Refactor Code Splitting with React.lazy & Suspense",
+      "description": "Split route chunks for /login, /dashboard, /board, and /analytics to reduce initial bundle size below 150kB.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-4",
+        "name": "David Marcus",
+        "email": "david.marcus@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+        "role": "DevOps Specialist"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-25",
+      "createdAt": "2026-08-18T09:00:00Z",
+      "completedAt": null,
+      "tags": ["Performance", "Vite", "Lazy"],
+      "comments": []
+    },
+    {
+      "id": "TASK-118",
+      "title": "Task Comments Section & Instant Creation",
+      "description": "Allow team members to post comments inside task detail drawer with real-time optimistic state updates.",
+      "status": "in_progress",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-3",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+        "role": "UI/UX Designer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-24",
+      "createdAt": "2026-08-18T11:30:00Z",
+      "completedAt": null,
+      "tags": ["Kanban", "Comments"],
+      "comments": []
+    },
+    {
+      "id": "TASK-119",
+      "title": "Sprint Velocity Calculation Math Algorithm",
+      "description": "Calculate total estimate points completed per sprint for velocity reporting in Analytics page.",
+      "status": "done",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-22",
+      "estimatePoints": 3,
+      "dueDate": "2026-07-25",
+      "createdAt": "2026-07-18T13:00:00Z",
+      "completedAt": "2026-07-24T16:10:00Z",
+      "tags": ["Analytics", "Math"],
+      "comments": []
+    },
+    {
+      "id": "TASK-120",
+      "title": "Custom Select Dropdown with Filterable Search",
+      "description": "Build accessible custom Select component supporting option search input and custom avatar options.",
+      "status": "in_progress",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-25",
+      "createdAt": "2026-08-19T10:00:00Z",
+      "completedAt": null,
+      "tags": ["Design System", "Select"],
+      "comments": []
+    },
+    {
+      "id": "TASK-121",
+      "title": "Audit Lighthouse Accessibility Score > 92",
+      "description": "Verify high-contrast colors, ARIA attributes, semantic landmarks, and skip-to-content focus links.",
+      "status": "review",
+      "priority": "urgent",
+      "assignee": {
+        "id": "usr-5",
+        "name": "Priya Patel",
+        "email": "priya.patel@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+        "role": "QA Automation Lead"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 2,
+      "dueDate": "2026-08-23",
+      "createdAt": "2026-08-19T14:20:00Z",
+      "completedAt": null,
+      "tags": ["A11y", "Lighthouse"],
+      "comments": []
+    },
+    {
+      "id": "TASK-122",
+      "title": "Add Task Search & Priority Filtering Controls",
+      "description": "Filter Kanban board cards instantly by keyword, priority dropdown, and assignee selector.",
+      "status": "done",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-3",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+        "role": "UI/UX Designer"
+      },
+      "sprintId": "sprint-23",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-08",
+      "createdAt": "2026-08-02T09:30:00Z",
+      "completedAt": "2026-08-07T11:45:00Z",
+      "tags": ["Kanban", "Filter"],
+      "comments": []
+    },
+    {
+      "id": "TASK-123",
+      "title": "Skeleton Pulse Component for Loading States",
+      "description": "Construct Skeleton primitives (SkeletonText, SkeletonCard, SkeletonAvatar) for fallback UI while data loads.",
+      "status": "done",
+      "priority": "low",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-23",
+      "estimatePoints": 2,
+      "dueDate": "2026-08-06",
+      "createdAt": "2026-08-01T15:00:00Z",
+      "completedAt": "2026-08-05T18:00:00Z",
+      "tags": ["Design System", "UX"],
+      "comments": []
+    },
+    {
+      "id": "TASK-124",
+      "title": "Create Sprint Summary Header & Active Statistics",
+      "description": "Header display showing active sprint dates, completion percentage progress bar, and total story points.",
+      "status": "done",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-23",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-09",
+      "createdAt": "2026-08-03T10:00:00Z",
+      "completedAt": "2026-08-08T14:30:00Z",
+      "tags": ["Dashboard", "Sprint"],
+      "comments": []
+    },
+    {
+      "id": "TASK-125",
+      "title": "Configure Vitest Test Runner & Testing Library",
+      "description": "Setup test configuration, mock window objects, and jsdom environment setup for unit tests.",
+      "status": "done",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-5",
+        "name": "Priya Patel",
+        "email": "priya.patel@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+        "role": "QA Automation Lead"
+      },
+      "sprintId": "sprint-21",
+      "estimatePoints": 3,
+      "dueDate": "2026-07-08",
+      "createdAt": "2026-07-01T13:00:00Z",
+      "completedAt": "2026-07-07T16:00:00Z",
+      "tags": ["Testing", "Setup"],
+      "comments": []
+    },
+    {
+      "id": "TASK-126",
+      "title": "Optimistic UI Update for Task Column Movements",
+      "description": "Immediately update UI state when dropping a task card before persisting data to local storage.",
+      "status": "backlog",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-27",
+      "createdAt": "2026-08-20T09:00:00Z",
+      "completedAt": null,
+      "tags": ["Kanban", "UX"],
+      "comments": []
+    },
+    {
+      "id": "TASK-127",
+      "title": "Keyboard-Accessible Drag-and-Drop Reordering",
+      "description": "Enable Space/Enter selection and Arrow key navigation to move tasks across columns without mouse.",
+      "status": "backlog",
+      "priority": "medium",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-27",
+      "createdAt": "2026-08-20T10:30:00Z",
+      "completedAt": null,
+      "tags": ["A11y", "DND", "Bonus"],
+      "comments": []
+    },
+    {
+      "id": "TASK-128",
+      "title": "Toast System Context Provider & Auto-Dismiss",
+      "description": "Create Toast context supporting stackable notifications, auto-timer dismissal, and custom action callbacks.",
+      "status": "done",
+      "priority": "high",
+      "assignee": {
+        "id": "usr-1",
+        "name": "Emily Smith",
+        "email": "emily.smith@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80",
+        "role": "Lead Frontend Engineer"
+      },
+      "sprintId": "sprint-23",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-04",
+      "createdAt": "2026-07-30T11:00:00Z",
+      "completedAt": "2026-08-03T15:20:00Z",
+      "tags": ["Design System", "Toast"],
+      "comments": []
+    },
+    {
+      "id": "TASK-129",
+      "title": "Implement Delete Task Confirmation Dialog Modal",
+      "description": "Prompt user with modal warning before permanently removing a task from the sprint board.",
+      "status": "backlog",
+      "priority": "urgent",
+      "assignee": {
+        "id": "usr-3",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80",
+        "role": "UI/UX Designer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 2,
+      "dueDate": "2026-08-25",
+      "createdAt": "2026-08-21T08:00:00Z",
+      "completedAt": null,
+      "tags": ["Kanban", "Modal"],
+      "comments": []
+    },
+    {
+      "id": "TASK-130",
+      "title": "Custom Analytics Date-Range Filter Selector",
+      "description": "Provide start-date and end-date pickers to filter Analytics charts across custom sprint windows.",
+      "status": "backlog",
+      "priority": "low",
+      "assignee": {
+        "id": "usr-2",
+        "name": "Alex Rivera",
+        "email": "alex.rivera@grubpac.com",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+        "role": "Senior Fullstack Engineer"
+      },
+      "sprintId": "sprint-24",
+      "estimatePoints": 3,
+      "dueDate": "2026-08-28",
+      "createdAt": "2026-08-21T09:30:00Z",
+      "completedAt": null,
+      "tags": ["Analytics", "Filter", "Bonus"],
+      "comments": []
+    }
+  ]
+}
