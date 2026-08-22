@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Calendar, MessageSquare, Trash2, GripVertical } from 'lucide-react';
+import { Calendar, MessageSquare, Trash2, GripVertical, ArrowUpRight } from 'lucide-react';
 import { SprintTask } from '../../types/board';
 import { Badge } from '../ui/Badge';
 import { Avatar } from '../ui/Avatar';
@@ -39,7 +39,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
     <div
       ref={setNodeRef}
       style={style}
-      className={`group relative w-full bg-white dark:bg-slate-900 border border-orange-100 dark:border-slate-800 rounded-xl p-4 shadow-xs hover:shadow-md hover:border-orange-300 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between select-none ${
+      onClick={() => onSelect(task.id)}
+      className={`group relative w-full bg-white dark:bg-slate-900 border border-orange-100 dark:border-slate-800 rounded-xl p-4 shadow-xs hover:shadow-md hover:border-orange-300 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between select-none cursor-pointer ${
         isDragging ? 'opacity-30 border-dashed border-brand-500' : ''
       } ${isOverlay ? 'shadow-2xl border-brand-500 ring-2 ring-brand-500/20 rotate-1 cursor-grabbing z-50' : ''}`}
     >
@@ -47,7 +48,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
         {/* Top Header: Priority Badge & Drag Handle & Delete */}
         <div className="flex items-center justify-between gap-2 mb-2.5">
           <Badge priority={task.priority} size="sm" />
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
             <button
               {...attributes}
               {...listeners}
@@ -62,9 +63,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
                   e.stopPropagation();
                   onDelete(task.id);
                 }}
-                className="p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors"
+                className="p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
                 aria-label={`Delete task ${task.id}`}
-                title="Delete task"
               >
                 <Trash2 className="w-3.5 h-3.5" />
               </button>
@@ -74,10 +74,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
 
         {/* Task Title */}
         <h4
-          onClick={() => onSelect(task.id)}
-          className="text-sm font-bold text-slate-900 dark:text-slate-100 cursor-pointer group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors line-clamp-2 leading-snug mb-1.5"
+          className="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors line-clamp-2 leading-snug mb-1.5 inline-flex items-center gap-1.5 flex-wrap"
         >
-          {task.title}
+          <span>{task.title}</span>
+          <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-brand-500 shrink-0 transition-all" />
         </h4>
 
         {/* Task Description Snippet */}
@@ -95,7 +95,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
             <Avatar src={task.assignee.avatar} name={task.assignee.name} size="xs" />
           )}
           {task.estimatePoints && (
-            <span className="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-brand-900 dark:bg-slate-800 dark:text-slate-200 border border-orange-200 dark:border-slate-700">
+            <span
+              className="font-mono text-[11px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-brand-900 dark:bg-slate-800 dark:text-slate-200 border border-orange-200 dark:border-slate-700 hover:border-brand-400 transition-colors"
+              title="Estimate Story Points"
+            >
               {task.estimatePoints} pts
             </span>
           )}
@@ -103,7 +106,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
 
         <div className="flex items-center gap-2.5">
           {task.comments && task.comments.length > 0 && (
-            <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400 font-medium">
+            <div
+              className="flex items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 font-medium transition-colors cursor-pointer"
+              title={`${task.comments.length} comments - Click to view`}
+            >
               <MessageSquare className="w-3.5 h-3.5" />
               <span className="text-[11px] font-semibold">{task.comments.length}</span>
             </div>

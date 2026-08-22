@@ -9,11 +9,13 @@ import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { Select } from '../ui/Select';
 import { formatDate, formatRelativeTime } from '../../utils/date';
+import { useToast } from '../../hooks/useToast';
 import { TaskPriority, TaskStatus } from '../../types/board';
 
 export const TaskDetailDrawer: React.FC = () => {
   const { selectedTaskId, setSelectedTaskId, tasks, updateTask, addComment, users } = useBoardStore();
   const { user: authUser } = useAuthStore();
+  const { success } = useToast();
 
   const [newCommentText, setNewCommentText] = useState('');
   const [isEditing, setIsEditing] = useState(false);
@@ -48,6 +50,7 @@ export const TaskDetailDrawer: React.FC = () => {
 
     addComment(task.id, newCommentText.trim(), authorName, authorAvatar);
     setNewCommentText('');
+    success('Comment Posted', 'Your comment has been added successfully.');
   };
 
   const statusOptions = [

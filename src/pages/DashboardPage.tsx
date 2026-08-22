@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Kanban, CheckCircle2, Clock, Zap, Plus, ArrowRight } from 'lucide-react';
+import { Kanban, CheckCircle2, Clock, Zap, Plus, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { useBoardStore } from '../store/board.store';
 import { useBoardTasks } from '../hooks/useBoardTasks';
 import { Button } from '../components/ui/Button';
@@ -12,7 +12,7 @@ import { SprintTask } from '../types/board';
 export const DashboardPage: React.FC = () => {
   useBoardTasks();
   const navigate = useNavigate();
-  const { tasks, setCreateModalOpen } = useBoardStore();
+  const { tasks, setCreateModalOpen, setSelectedTaskId } = useBoardStore();
 
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter((t) => t.status === 'done').length;
@@ -34,7 +34,10 @@ export const DashboardPage: React.FC = () => {
       header: 'Task ID',
       sortable: true,
       render: (task) => (
-        <span className="font-mono text-xs font-bold text-brand-700 dark:text-brand-400">
+        <span
+          onClick={() => setSelectedTaskId(task.id)}
+          className="font-mono text-xs font-bold text-brand-700 dark:text-brand-400 cursor-pointer hover:underline"
+        >
           {task.id}
         </span>
       ),
@@ -44,8 +47,16 @@ export const DashboardPage: React.FC = () => {
       header: 'Title',
       sortable: true,
       render: (task) => (
-        <div className="flex flex-col">
-          <span className="font-bold text-slate-900 dark:text-slate-100">{task.title}</span>
+        <div
+          onClick={() => setSelectedTaskId(task.id)}
+          className="flex flex-col cursor-pointer group/title select-none"
+        >
+          <div className="flex items-center gap-1.5">
+            <span className="font-bold text-slate-900 dark:text-slate-100 group-hover/title:text-brand-600 dark:group-hover/title:text-brand-400 group-hover/title:underline transition-colors">
+              {task.title}
+            </span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-brand-500 opacity-40 group-hover/title:opacity-100 group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all" />
+          </div>
           <span className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">{task.description}</span>
         </div>
       ),

@@ -73,15 +73,15 @@ export const Drawer: React.FC<DrawerProps> = ({
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{subtitle}</p>
               )}
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
+              type="button"
               onClick={onClose}
-              className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              className="p-2 rounded-xl text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
               aria-label="Close drawer"
+              title="Close (Esc)"
             >
               <X className="w-5 h-5" />
-            </Button>
+            </button>
           </div>
 
           {/* Main Content Body */}
