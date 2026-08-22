@@ -25,6 +25,40 @@ A modern, full-featured Sprint Management & Agile Kanban Dashboard built with Re
 - **Testing**: [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/)
 - **Linting**: [Oxlint](https://oxc.rs/)
 
+## 📁 Project Structure
+
+```text
+sprintdesk-dashboard/
+├── public/                 # Static assets and mock data
+│   ├── favicon.svg
+│   ├── icons.svg
+│   └── mock-data.json
+├── src/
+│   ├── api/                # API client and service endpoints (Auth, Tasks, Notifications)
+│   ├── assets/             # Images and SVG icons
+│   ├── components/         # Modular React components
+│   │   ├── analytics/      # Recharts visualizations (Velocity, Priority, Status, Trends)
+│   │   ├── board/          # Kanban board, columns, cards, filters & task modals
+│   │   ├── common/         # Page loaders, protected route guards
+│   │   ├── layout/         # Header, sidebar, notification bell, app layout
+│   │   └── ui/             # Reusable UI primitives (Buttons, Modals, Drawers, Badges, etc.)
+│   ├── hooks/              # Custom React hooks (useAuth, useBoardTasks, useToast, etc.)
+│   ├── pages/              # Routed pages (Dashboard, Board, Analytics, Login)
+│   ├── store/              # Zustand global state stores (board, auth, theme, notifications)
+│   ├── test/               # Vitest unit & integration test suites
+│   ├── types/              # TypeScript definitions & data models
+│   ├── utils/              # Helper utilities (date formatting, CSV/image export, storage)
+│   ├── App.tsx             # Root application component with routing
+│   ├── index.css           # Global Tailwind CSS styles
+│   └── main.tsx            # Application entry point
+├── .gitignore              # Git ignore configuration
+├── index.html              # HTML entry point
+├── package.json            # Dependencies and npm scripts
+├── tailwind.config.js      # Tailwind CSS configuration
+├── tsconfig.json           # TypeScript configuration
+└── vite.config.ts          # Vite build configuration
+```
+
 ## 🚀 Getting Started
 
 ### Prerequisites
