@@ -18,7 +18,10 @@ export const LoginPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
-  const from = location.state?.from?.pathname || '/dashboard';
+  const targetRoute =
+    location.state?.from?.pathname && location.state.from.pathname !== '/login'
+      ? location.state.from.pathname
+      : '/dashboard';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +36,7 @@ export const LoginPage: React.FC = () => {
     try {
       await login({ username, password, rememberMe });
       success('Welcome back!', 'Authenticated session established successfully.');
-      navigate(from, { replace: true });
+      navigate(targetRoute, { replace: true });
     } catch (err: any) {
       const msg = err.message || 'Login failed. Please verify credentials.';
       setFormError(msg);
