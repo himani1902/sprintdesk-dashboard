@@ -50,12 +50,12 @@ export const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 bg-orange-50/50 text-slate-800 relative overflow-hidden">
+    <div className="min-h-screen w-full flex items-center justify-center p-3 sm:p-6 bg-orange-50/50 text-slate-800 relative overflow-hidden">
       {/* Decorative Warm Blobs */}
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-orange-300/30 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-amber-300/30 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-md bg-white border border-orange-100 rounded-3xl p-6 sm:p-8 shadow-xl z-10 animate-fade-in">
+      <div className="w-full max-w-md bg-white border border-orange-100 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-xl z-10 animate-fade-in">
         {/* Logo Header */}
         <div className="flex flex-col items-center text-center gap-3 mb-8">
           <div className="w-14 h-14 rounded-2xl bg-brand-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 shrink-0">
@@ -66,23 +66,23 @@ export const LoginPage: React.FC = () => {
               Sign in to SprintDesk
             </h1>
             <p className="text-xs font-medium text-slate-600 mt-1">
-              Sprint Management Dashboard for GrubPac Technologies
+              Sprint Management & Agile Workspace
             </p>
           </div>
         </div>
 
-        {/* Demo Credentials Quick Fill Banner */}
+        {/* Enterprise Test Sign-in Helper */}
         <div className="mb-6 p-3.5 rounded-2xl bg-orange-100/80 border border-orange-300/90 flex items-center justify-between text-xs shadow-2xs">
           <div className="flex items-center gap-2 text-slate-800">
             <ShieldCheck className="w-4 h-4 text-brand-600 shrink-0" />
-            <span>Demo: <strong className="font-bold text-slate-950">emilys</strong> / <strong className="font-bold text-slate-950">emilyspass</strong></span>
+            <span>Lead Engineer: <strong className="font-bold text-slate-950">emilys</strong> / <strong className="font-bold text-slate-950">••••••••</strong></span>
           </div>
           <button
             type="button"
             onClick={fillDemoCredentials}
-            className="text-[11px] font-bold text-brand-700 hover:text-brand-800 underline cursor-pointer"
+            className="text-[11px] font-bold text-brand-700 hover:text-brand-800 hover:underline cursor-pointer"
           >
-            Auto Fill
+            Quick Fill
           </button>
         </div>
 
@@ -138,10 +138,6 @@ export const LoginPage: React.FC = () => {
             Sign In
           </Button>
         </form>
-
-        <div className="mt-8 pt-6 border-t border-slate-100 text-center text-xs font-medium text-slate-500">
-          Powered by DummyJSON Authentication API & React 18
-        </div>
       </div>
     </div>
   );

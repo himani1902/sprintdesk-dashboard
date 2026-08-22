@@ -43,8 +43,8 @@ export const TaskDetailDrawer: React.FC = () => {
 
     const authorName = authUser
       ? `${authUser.firstName || ''} ${authUser.lastName || ''}`.trim() || authUser.username
-      : 'Emily Smith';
-    const authorAvatar = authUser?.image || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80';
+      : 'Emily Johnson';
+    const authorAvatar = authUser?.image || 'https://i.pravatar.cc/150?img=47';
 
     addComment(task.id, newCommentText.trim(), authorName, authorAvatar);
     setNewCommentText('');
@@ -72,7 +72,7 @@ export const TaskDetailDrawer: React.FC = () => {
         setIsEditing(false);
       }}
       title={task.id}
-      subtitle={`Sprint 24 • Created ${formatDate(task.createdAt)}`}
+      subtitle={`Sprint ${task.sprintId} • Created ${formatDate(task.createdAt)}`}
     >
       <div className="flex flex-col gap-6">
         {/* Title Section */}
@@ -85,7 +85,7 @@ export const TaskDetailDrawer: React.FC = () => {
         </div>
 
         {/* Quick Settings Grid */}
-        <div className="grid grid-cols-2 gap-4 p-4 bg-orange-50/50 dark:bg-slate-950/60 border border-orange-200/60 dark:border-slate-800 rounded-2xl shadow-2xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 p-3.5 sm:p-4 bg-orange-50/50 dark:bg-slate-950/60 border border-orange-200/60 dark:border-slate-800 rounded-2xl shadow-2xs">
           <div>
             <label className="text-[11px] font-extrabold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-1">
               Status

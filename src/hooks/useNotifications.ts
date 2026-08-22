@@ -11,7 +11,7 @@ export function useNotifications() {
   const { data, refetch } = useQuery({
     queryKey: ['notifications-polling'],
     queryFn: notificationsApi.pollNotifications,
-    refetchInterval: 15000, // 15 seconds
+    refetchInterval: () => (typeof document !== 'undefined' && document.hidden ? false : 15000),
     refetchOnWindowFocus: true,
   });
 

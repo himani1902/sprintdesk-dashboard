@@ -2,28 +2,44 @@ import { create } from 'zustand';
 import { NotificationState, NotificationItem } from '../types/notification';
 import { storage } from '../utils/storage';
 
-const LOCAL_STORAGE_KEY = 'sp_notifications_v1';
+const LOCAL_STORAGE_KEY = 'sp_notifications_v3';
 
 export const useNotificationStore = create<NotificationState>((set, get) => ({
   notifications: storage.getItem<NotificationItem[]>(LOCAL_STORAGE_KEY, [
     {
-      id: 'init-1',
-      title: 'Welcome to SprintDesk',
-      body: 'Sprint 24 is now active. Review active tasks and track real-time team progress.',
-      timestamp: new Date().toISOString(),
+      id: 101,
+      title: 'Task assigned',
+      body: "You have been assigned to 'Build Kanban board'.",
+      timestamp: '2026-08-19T11:10:00Z',
       isRead: false,
       type: 'info',
     },
     {
-      id: 'init-2',
-      title: 'Sprint 23 Retrospective Completed',
-      body: 'Team achieved 94% velocity goal in Sprint 23. Check analytics page for details.',
-      timestamp: new Date(Date.now() - 3600000 * 4).toISOString(),
+      id: 102,
+      title: 'Review requested',
+      body: "A review has been requested for 'Create analytics dashboard'.",
+      timestamp: '2026-08-19T13:30:00Z',
+      isRead: false,
+      type: 'warning',
+    },
+    {
+      id: 103,
+      title: 'Task completed',
+      body: "'Implement authentication flow' has been completed.",
+      timestamp: '2026-08-18T16:20:00Z',
       isRead: true,
       type: 'success',
-    }
+    },
+    {
+      id: 104,
+      title: 'Review requested',
+      body: "A review has been requested for 'Accessibility audit'.",
+      timestamp: '2026-08-19T14:00:00Z',
+      isRead: false,
+      type: 'warning',
+    },
   ]),
-  unreadCount: 1,
+  unreadCount: 3,
   currentPage: 1,
   itemsPerPage: 5,
   isPanelOpen: false,

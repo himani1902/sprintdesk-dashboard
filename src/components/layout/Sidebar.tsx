@@ -56,8 +56,8 @@ export const Sidebar: React.FC = () => {
       <div className="p-3.5 rounded-2xl bg-orange-100/60 dark:bg-slate-950/80 border border-orange-200 dark:border-slate-800 flex items-center gap-3 shadow-2xs">
         <ShieldCheck className="w-5 h-5 text-brand-600 shrink-0" />
         <div className="flex flex-col">
-          <span className="text-xs font-bold text-slate-900 dark:text-slate-100">GrubPac SprintDesk</span>
-          <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Production-Ready • TS</span>
+          <span className="text-xs font-bold text-slate-900 dark:text-slate-100">SprintDesk</span>
+          <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">Enterprise Edition v2.4</span>
         </div>
       </div>
     </aside>

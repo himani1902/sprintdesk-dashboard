@@ -53,7 +53,7 @@ export const Drawer: React.FC<DrawerProps> = ({
       role="dialog"
       aria-modal="true"
     >
-      <div className="absolute inset-y-0 right-0 flex max-w-full pl-10">
+      <div className="absolute inset-y-0 right-0 flex max-w-full pl-0 sm:pl-10">
         <div
           className={clsx(
             'w-screen bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col justify-between animate-slide-up transform transition-all duration-300',
@@ -62,10 +62,10 @@ export const Drawer: React.FC<DrawerProps> = ({
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800/80 shrink-0">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800/80 shrink-0">
             <div>
               {title && (
-                <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
                   {title}
                 </h2>
               )}
@@ -85,11 +85,11 @@ export const Drawer: React.FC<DrawerProps> = ({
           </div>
 
           {/* Main Content Body */}
-          <div className="flex-1 overflow-y-auto p-6">{children}</div>
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6">{children}</div>
 
           {/* Optional Footer */}
           {footer && (
-            <div className="flex items-center justify-end gap-3 px-6 py-4 bg-slate-50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800/80 shrink-0">
+            <div className="flex items-center justify-end gap-3 px-4 sm:px-6 py-3.5 sm:py-4 bg-slate-50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800/80 shrink-0">
               {footer}
             </div>
           )}

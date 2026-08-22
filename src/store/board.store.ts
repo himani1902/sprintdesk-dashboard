@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { BoardState, SprintTask, TaskStatus, BoardFilterState, UndoOperation, Sprint, UserAssignee } from '../types/board';
 import { storage } from '../utils/storage';
 
-const LOCAL_STORAGE_KEY = 'sp_board_tasks_v2';
+const LOCAL_STORAGE_KEY = 'sp_board_tasks_v3';
 
 const initialFilters: BoardFilterState = {
   searchQuery: '',

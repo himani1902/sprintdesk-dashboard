@@ -15,7 +15,7 @@ export const CreateTaskModal: React.FC = () => {
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState<TaskPriority>('medium');
   const [status, setStatus] = useState<TaskStatus>('backlog');
-  const [assigneeId, setAssigneeId] = useState('usr-1');
+  const [assigneeId, setAssigneeId] = useState('1');
   const [estimatePoints, setEstimatePoints] = useState(3);
   const [dueDate, setDueDate] = useState('');
   const [errors, setErrors] = useState<{ title?: string }>({});
@@ -28,10 +28,10 @@ export const CreateTaskModal: React.FC = () => {
     }
 
     const assignee = users.find((u) => u.id === assigneeId) || users[0] || {
-      id: 'usr-1',
-      name: 'Emily Smith',
-      email: 'emily.smith@grubpac.com',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+      id: '1',
+      name: 'Emily Johnson',
+      email: 'emily.johnson@example.com',
+      avatar: 'https://i.pravatar.cc/150?img=47',
       role: 'Lead Frontend Engineer',
     };
 
@@ -41,11 +41,11 @@ export const CreateTaskModal: React.FC = () => {
       priority,
       status,
       assignee,
-      sprintId: 'sprint-24',
+      sprintId: '3',
       estimatePoints: Number(estimatePoints) || 1,
       dueDate: dueDate || new Date(Date.now() + 86400000 * 7).toISOString().split('T')[0],
       completedAt: status === 'done' ? new Date().toISOString() : null,
-      tags: ['Sprint 24'],
+      tags: ['Sprint 3'],
     });
 
     success('Task Created Successfully', `${created.id} has been added to ${status.replace('_', ' ')}.`);
@@ -77,7 +77,7 @@ export const CreateTaskModal: React.FC = () => {
       isOpen={isCreateModalOpen}
       onClose={() => setCreateModalOpen(false)}
       title="Create New Sprint Task"
-      description="Add a task to Sprint 24 backlog or board columns."
+      description="Add a task to Sprint 3 backlog or board columns."
       footer={
         <>
           <Button variant="outline" onClick={() => setCreateModalOpen(false)}>
@@ -113,7 +113,7 @@ export const CreateTaskModal: React.FC = () => {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Select
             label="Priority"
             options={priorityOptions}
@@ -129,7 +129,7 @@ export const CreateTaskModal: React.FC = () => {
           />
         </div>
 
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <Select
             label="Assignee"
             options={users.map((u) => ({ label: u.name, value: u.id }))}

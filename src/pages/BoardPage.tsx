@@ -19,31 +19,31 @@ export const BoardPage: React.FC = () => {
   return (
     <div className="flex flex-col gap-6 animate-fade-in">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+            <h1 className="text-xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-slate-100">
               Kanban Sprint Board
             </h1>
-            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-700 dark:text-brand-300">
-              Sprint 24
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-800 dark:text-brand-300 border border-brand-200 dark:border-brand-900/60 shrink-0">
+              Sprint 3
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Drag tasks between columns to update status • Backlog ({backlogCount}), In Progress ({inProgressCount}), Review ({reviewCount}), Done ({doneCount})
+          <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">
+            Drag tasks between workflow columns to update status • Backlog ({backlogCount}), In Progress ({inProgressCount}), Review ({reviewCount}), Done ({doneCount})
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
           {undoStack.length > 0 && (
             <Button
               size="sm"
               variant="outline"
               onClick={undoLastMove}
               leftIcon={<RotateCcw className="w-3.5 h-3.5" />}
-              className="text-xs text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700"
+              className="text-xs text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700"
             >
-              Undo Last Move
+              Undo
             </Button>
           )}
 

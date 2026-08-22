@@ -27,7 +27,7 @@ export const BoardFilters: React.FC = () => {
     filters.assigneeId !== 'all';
 
   return (
-    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-3 bg-white dark:bg-slate-900 border border-orange-100 dark:border-slate-800 p-3.5 rounded-2xl shadow-xs">
+    <div className="w-full flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-white dark:bg-slate-900 border border-orange-100 dark:border-slate-800 p-3 sm:p-4 rounded-2xl shadow-xs">
       {/* Search Input */}
       <div className="w-full md:max-w-xs">
         <Input
@@ -39,7 +39,7 @@ export const BoardFilters: React.FC = () => {
       </div>
 
       {/* Filter Selects & Reset */}
-      <div className="w-full md:w-auto flex flex-wrap items-center gap-3">
+      <div className="w-full md:w-auto flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3">
         <div className="w-full sm:w-44">
           <Select
             options={priorityOptions}
@@ -62,7 +62,7 @@ export const BoardFilters: React.FC = () => {
             variant="ghost"
             onClick={resetFilters}
             leftIcon={<RotateCcw className="w-3.5 h-3.5" />}
-            className="text-xs text-brand-600 hover:text-brand-700 font-bold"
+            className="text-xs text-brand-600 dark:text-brand-400 hover:text-brand-700 font-bold self-start sm:self-auto"
           >
             Clear Filters
           </Button>

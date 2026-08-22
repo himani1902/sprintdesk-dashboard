@@ -27,7 +27,7 @@ export const authApi = {
       firstName: data.firstName,
       lastName: data.lastName,
       gender: data.gender,
-      image: data.image,
+      image: 'https://i.pravatar.cc/150?img=47',
     };
 
     setAccessTokenInMemory(data.accessToken);
@@ -83,10 +83,10 @@ export const authApi = {
         user = {
           id: 1,
           username: 'emilys',
-          email: 'emily.smith@grubpac.com',
+          email: 'emily.johnson@example.com',
           firstName: 'Emily',
-          lastName: 'Smith',
-          image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+          lastName: 'Johnson',
+          image: 'https://i.pravatar.cc/150?img=47',
         };
       }
 

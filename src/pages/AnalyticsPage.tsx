@@ -25,11 +25,10 @@ export const AnalyticsPage: React.FC = () => {
 
   // Derive 1. Velocity Data
   const velocityData: VelocityData[] = [
-    { sprintName: 'Sprint 21', completedPoints: 34, totalPoints: 38 },
-    { sprintName: 'Sprint 22', completedPoints: 42, totalPoints: 45 },
-    { sprintName: 'Sprint 23', completedPoints: 38, totalPoints: 40 },
+    { sprintName: 'Sprint 1', completedPoints: 24, totalPoints: 24 },
+    { sprintName: 'Sprint 2', completedPoints: 32, totalPoints: 32 },
     {
-      sprintName: 'Sprint 24 (Active)',
+      sprintName: 'Sprint 3 (Active)',
       completedPoints: filteredTasks
         .filter((t) => t.status === 'done')
         .reduce((sum, t) => sum + (t.estimatePoints || 0), 0),
@@ -108,23 +107,23 @@ export const AnalyticsPage: React.FC = () => {
   return (
     <div className="flex flex-col gap-6 animate-fade-in">
       {/* Header & Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-slate-100">
+          <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+            <h1 className="text-xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-slate-100">
               Analytics & Reports
             </h1>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-orange-100 dark:bg-orange-950 text-brand-800 dark:text-brand-300">
-              Real-time Metrics
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-brand-100 dark:bg-brand-950 text-brand-800 dark:text-brand-300 border border-brand-200 dark:border-brand-900/60 shrink-0">
+              Live Metrics
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+          <p className="text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">
             Data visualizations derived live from active sprint tasks and team velocity metrics.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="w-48 sm:w-56">
+        <div className="flex items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+          <div className="flex-1 sm:w-56">
             <Select
               options={sprintOptions}
               value={selectedSprintFilter}
@@ -138,6 +137,7 @@ export const AnalyticsPage: React.FC = () => {
             onClick={handleExportPng}
             isLoading={isExporting}
             leftIcon={<Download className="w-4 h-4" />}
+            className="shrink-0 font-bold"
           >
             Export PNG
           </Button>
@@ -145,7 +145,7 @@ export const AnalyticsPage: React.FC = () => {
       </div>
 
       {/* Analytics Dashboard Grid Canvas */}
-      <div id="analytics-canvas" className="grid grid-cols-1 md:grid-cols-2 gap-6 p-2 rounded-2xl">
+      <div id="analytics-canvas" className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 p-0 sm:p-2 rounded-2xl">
         <VelocityChart data={velocityData} />
         <StatusChart data={statusData} />
         <PriorityChart data={priorityData} />

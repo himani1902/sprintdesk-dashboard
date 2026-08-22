@@ -54,11 +54,11 @@ export function DataTable<T extends Record<string, any>>({
   return (
     <div className="w-full flex flex-col gap-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
       <div className="w-full overflow-x-auto">
-        <table className="w-full text-left text-sm border-collapse">
+        <table className="w-full text-left text-sm border-collapse min-w-[600px] sm:min-w-full">
           <thead>
             <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/60 text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               {columns.map((col) => (
-                <th key={col.key} className="px-6 py-3.5 select-none">
+                <th key={col.key} className="px-4 sm:px-6 py-3.5 select-none">
                   {col.sortable ? (
                     <button
                       onClick={() => handleSort(col.key)}
@@ -79,7 +79,7 @@ export function DataTable<T extends Record<string, any>>({
               paginatedData.map((item) => (
                 <tr key={keyExtractor(item)} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-colors">
                   {columns.map((col) => (
-                    <td key={col.key} className="px-6 py-4 text-slate-700 dark:text-slate-300">
+                    <td key={col.key} className="px-4 sm:px-6 py-3.5 sm:py-4 text-slate-700 dark:text-slate-300">
                       {col.render ? col.render(item) : item[col.key]}
                     </td>
                   ))}
@@ -87,7 +87,7 @@ export function DataTable<T extends Record<string, any>>({
               ))
             ) : (
               <tr>
-                <td colSpan={columns.length} className="px-6 py-12 text-center text-slate-400 dark:text-slate-500">
+                <td colSpan={columns.length} className="px-4 sm:px-6 py-12 text-center text-slate-400 dark:text-slate-500">
                   {emptyMessage}
                 </td>
               </tr>
@@ -98,8 +98,8 @@ export function DataTable<T extends Record<string, any>>({
 
       {/* Pagination Footer */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-6 py-3.5 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/40 dark:bg-slate-950/20 text-xs text-slate-500 dark:text-slate-400">
-          <span>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/40 dark:bg-slate-950/20 text-xs font-medium text-slate-600 dark:text-slate-400">
+          <span className="text-center sm:text-left">
             Showing {Math.min((currentPage - 1) * pageSize + 1, sortedData.length)} to{' '}
             {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} entries
           </span>
@@ -114,7 +114,7 @@ export function DataTable<T extends Record<string, any>>({
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <span className="font-medium px-2">
+            <span className="font-semibold px-2">
               Page {currentPage} of {totalPages}
             </span>
             <Button

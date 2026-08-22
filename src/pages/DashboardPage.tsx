@@ -90,33 +90,31 @@ export const DashboardPage: React.FC = () => {
   return (
     <div className="flex flex-col gap-6 animate-fade-in">
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-7 bg-gradient-to-r from-orange-600 via-brand-500 to-amber-500 rounded-3xl text-white shadow-xl shadow-brand-500/20">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 sm:p-7 bg-gradient-to-r from-orange-600 via-brand-500 to-amber-500 rounded-2xl sm:rounded-3xl text-white shadow-xl shadow-brand-500/20">
         <div>
-          <span className="text-xs font-black uppercase tracking-wider text-orange-100 drop-shadow-xs">
+          <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-orange-100 drop-shadow-xs">
             Sprint Management Overview
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black tracking-tight mt-1 text-white">
-            Sprint 24 Dashboard
+          <h1 className="text-xl sm:text-3xl font-black tracking-tight mt-1 text-white">
+            Sprint 3 Dashboard
           </h1>
           <p className="text-xs sm:text-sm text-white/95 mt-1.5 max-w-xl font-medium leading-relaxed">
             Track real-time story point completion, task movements across columns, and overall team velocity.
           </p>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2.5 sm:gap-3 shrink-0 w-full sm:w-auto">
           <Button
             onClick={() => setCreateModalOpen(true)}
-            variant="secondary"
-            leftIcon={<Plus className="w-4 h-4" />}
-            className="bg-white text-slate-900 hover:bg-orange-50 border-none font-bold shadow-md"
+            leftIcon={<Plus className="w-4 h-4 text-brand-900" />}
+            className="w-full sm:w-auto justify-center bg-white text-brand-900 hover:bg-orange-50 hover:text-brand-950 font-black shadow-md border border-white"
           >
             Create Task
           </Button>
           <Button
             onClick={() => navigate('/board')}
-            variant="outline"
-            rightIcon={<ArrowRight className="w-4 h-4" />}
-            className="border-2 border-white/70 text-white hover:bg-white/15 font-bold"
+            rightIcon={<ArrowRight className="w-4 h-4 text-white" />}
+            className="w-full sm:w-auto justify-center bg-orange-900/40 hover:bg-orange-900/60 text-white border-2 border-white font-bold backdrop-blur-xs shadow-md"
           >
             Sprint Board
           </Button>
@@ -124,7 +122,7 @@ export const DashboardPage: React.FC = () => {
       </div>
 
       {/* Metrics Grid - Equal Sized Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {/* Card 1: Total Tasks */}
         <div className="p-5 bg-white dark:bg-slate-900 border border-orange-100 dark:border-slate-800 rounded-2xl shadow-xs flex items-center justify-between h-full min-h-[110px] transition-all hover:shadow-md hover:border-orange-300 dark:hover:border-slate-700">
           <div>
@@ -195,7 +193,7 @@ export const DashboardPage: React.FC = () => {
       {/* Active Tasks Table Section */}
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">Sprint 24 Tasks</h3>
+          <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">Sprint 3 Tasks</h3>
           <Button
             size="sm"
             variant="ghost"
