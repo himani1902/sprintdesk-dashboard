@@ -16,7 +16,7 @@ export const AppLayout: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors overflow-hidden">
       <Header />
 
       <div className="flex-1 flex overflow-hidden">

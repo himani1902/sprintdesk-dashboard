@@ -7,7 +7,20 @@ import { setAccessTokenInMemory, REFRESH_TOKEN_KEY } from '../api/client';
 const USER_STORAGE_KEY = 'sp_user';
 const TOKEN_STORAGE_KEY = 'sp_token';
 
-const initialUser = storage.getItem<User | null>(USER_STORAGE_KEY, null);
+const sanitizeAvatar = (img?: string) => {
+  if (!img || img.includes('dummyjson.com/icon')) {
+    return 'https://i.pravatar.cc/150?img=47';
+  }
+  return img;
+};
+
+const rawUser = storage.getItem<User | null>(USER_STORAGE_KEY, null);
+const initialUser = rawUser
+  ? {
+      ...rawUser,
+      image: sanitizeAvatar(rawUser.image),
+    }
+  : null;
 const initialToken = storage.getItem<string | null>(TOKEN_STORAGE_KEY, null);
 
 if (initialToken) {
@@ -22,11 +35,15 @@ export const useAuthStore = create<AuthState>((set) => ({
   error: null,
 
   setAuth: (user: User, accessToken: string, _refreshToken?: string) => {
-    storage.setItem(USER_STORAGE_KEY, user);
+    const sanitizedUser = {
+      ...user,
+      image: sanitizeAvatar(user.image),
+    };
+    storage.setItem(USER_STORAGE_KEY, sanitizedUser);
     storage.setItem(TOKEN_STORAGE_KEY, accessToken);
     setAccessTokenInMemory(accessToken);
     set({
-      user,
+      user: sanitizedUser,
       accessToken,
       isAuthenticated: true,
       isLoading: false,

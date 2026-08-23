@@ -1,9 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Kanban, BarChart3, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, Kanban, BarChart3 } from 'lucide-react';
 import { clsx } from 'clsx';
+import { useAuthStore } from '../../store/auth.store';
+import { Avatar } from '../ui/Avatar';
 
 export const Sidebar: React.FC = () => {
+  const { user } = useAuthStore();
+  const fullName = user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.username : 'Emily Johnson';
+  const userAvatar =
+    user?.image?.includes('dummyjson.com/icon') || !user?.image
+      ? 'https://i.pravatar.cc/150?img=47'
+      : user.image;
+
   const navItems = [
     {
       label: 'Dashboard',
@@ -23,7 +32,7 @@ export const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 shrink-0 bg-white dark:bg-slate-900 border-r border-orange-100 dark:border-slate-800 p-4 flex flex-col justify-between hidden md:flex transition-colors">
+    <aside className="w-64 shrink-0 bg-white dark:bg-slate-900 border-r border-orange-100 dark:border-slate-800 p-4 flex flex-col justify-between hidden md:flex transition-colors h-full overflow-y-auto select-none">
       <div className="flex flex-col gap-6">
         <div className="px-3 py-1">
           <span className="text-[11px] font-black uppercase tracking-wider text-brand-700 dark:text-brand-400">
@@ -52,12 +61,12 @@ export const Sidebar: React.FC = () => {
         </nav>
       </div>
 
-      {/* Bottom info badge */}
-      <div className="p-3.5 rounded-2xl bg-orange-100/60 dark:bg-slate-950/80 border border-orange-200 dark:border-slate-800 flex items-center gap-3 shadow-2xs">
-        <ShieldCheck className="w-5 h-5 text-brand-600 shrink-0" />
-        <div className="flex flex-col">
-          <span className="text-xs font-bold text-slate-900 dark:text-slate-100">SprintDesk</span>
-          <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">Enterprise Edition v2.4</span>
+      {/* Bottom User Profile Badge with Photo */}
+      <div className="p-3 rounded-2xl bg-orange-100/60 dark:bg-slate-950/80 border border-orange-200 dark:border-slate-800 flex items-center gap-3 shadow-2xs">
+        <Avatar src={userAvatar} name={fullName} size="sm" />
+        <div className="flex flex-col min-w-0">
+          <span className="text-xs font-bold text-slate-900 dark:text-slate-100 truncate">{fullName}</span>
+          <span className="text-[10px] font-semibold text-slate-600 dark:text-slate-400 truncate">Lead Frontend Engineer</span>
         </div>
       </div>
     </aside>

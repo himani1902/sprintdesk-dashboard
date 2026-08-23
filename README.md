@@ -174,7 +174,19 @@ npm run build
 
 ---
 
-## Demo Credentials
+---
+
+## Submission Details
+
+| Field | Submission Value |
+| :--- | :--- |
+| **Candidate Name** | Himani |
+| **Role Applied** | Frontend Engineer |
+| **GitHub Repository** | [https://github.com/himani1902/sprintdesk-dashboard](https://github.com/himani1902/sprintdesk-dashboard) |
+| **Live Deployment** | [https://sprintdesk-dashboard.vercel.app](https://sprintdesk-dashboard.vercel.app) *(or your deployment URL)* |
+| **Screen Recording Demo** | [Video Walkthrough Link](https://loom.com/...) *(Add your Loom/Drive link)* |
+
+### Demo Credentials
 
 | Role | Username | Password |
 | :--- | :--- | :--- |
@@ -182,6 +194,205 @@ npm run build
 
 ---
 
+## Architecture and System Design
+
+### 1. High-Level Data Flow
+
+```text
++-------------------------------------------------------------------------+
+|                               UI LAYER                                  |
+|  (AppLayout, ProtectedRoute, KanbanBoard, AnalyticsPage, TaskDrawer)    |
++--------------------+--------------------------------+-------------------+
+                     |                                |
+                     v                                v
+        +-------------------------+      +---------------------------+
+        |   Client State Store    |      |    Server State Cache     |
+        |        (Zustand)        |      |    (TanStack Query v5)    |
+        +-------------------------+      +---------------------------+
+        | * Active Board Tasks    |      | * Initial Mock Data Cache |
+        | * Drag-and-Drop History |      | * Polled Notifications    |
+        | * User Auth Session     |      | * Tab Visibility Control  |
+        | * Theme Preference      |      | * Stale Time & Refetching |
+        | * Undo Stack (10 steps) |      | * Error Boundaries        |
+        +-------------------------+      +-------------+-------------+
+                                                       |
+                                                       v
+                                         +---------------------------+
+                                         |    API & SERVICE LAYER    |
+                                         |   (apiClient Interceptor) |
+                                         +---------------------------+
+                                         | * Request Bearer Header   |
+                                         | * 401 Silent Refresh Loop |
+                                         | * Queued Request Replay   |
+                                         +-------------+-------------+
+                                                       |
+                                                       v
+                                         +---------------------------+
+                                         |      DATA SOURCES         |
+                                         +---------------------------+
+                                         | * DummyJSON Auth API      |
+                                         | * JSONPlaceholder Polling |
+                                         | * public/mock-data.json   |
+                                         +---------------------------+
+```
+
+### 2. State Boundary Separation
+- **Server State (TanStack Query v5)**: Manages remote HTTP data fetching, asynchronous loading/error lifecycles, and window tab visibility pausing (`refetchInterval` paused on `document.hidden`).
+- **Application Client State (Zustand)**: Manages interactive client-side operations including `@dnd-kit/core` Kanban task positions, optimistic comment additions, undo history stack, and session state.
+- **Local Component State (`useState`, `useRef`)**: Confined to self-contained UI interactions such as dropdown popovers, modal visibility, and controlled form inputs.
+
+---
+
+## API Documentation (OpenAPI / Swagger Specification)
+
+### 1. Authentication Service (`https://dummyjson.com`)
+
+#### `POST /auth/login`
+Authenticates user credentials and returns JWT tokens with user metadata.
+
+- **Request Body**:
+```json
+{
+  "username": "emilys",
+  "password": "emilyspass",
+  "expiresInMins": 43200
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "id": 1,
+  "username": "emilys",
+  "email": "emily.johnson@example.com",
+  "firstName": "Emily",
+  "lastName": "Johnson",
+  "gender": "female",
+  "image": "https://i.pravatar.cc/150?img=47",
+  "accessToken": "eyJhbGciOiJIUzI1NiIsIn...",
+  "refreshToken": "e3b0c44298fc1c149afb..."
+}
+```
+- **Response `400 / 401 Error`**:
+```json
+{
+  "message": "Invalid credentials"
+}
+```
+
+#### `POST /auth/refresh`
+Performs silent token rotation when access token expires.
+
+- **Request Body**:
+```json
+{
+  "refreshToken": "e3b0c44298fc1c149afb...",
+  "expiresInMins": 60
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsIn...",
+  "refreshToken": "new_refresh_token_string..."
+}
+```
+
+---
+
+### 2. Real-Time Polling Service (`https://jsonplaceholder.typicode.com`)
+
+#### `GET /posts?_limit=5`
+Simulates incoming server-sent notification events via background polling.
+
+- **Query Parameters**: `_limit=5`
+- **Response `200 OK`**:
+```json
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident",
+    "body": "quia et suscipit suscipit recusandae consequuntur expedita..."
+  }
+]
+```
+
+---
+
+### 3. Initial Mock Data Service (`/mock-data.json`)
+
+#### `GET /mock-data.json`
+Provides initial seed data for 6 team members, 3 sprints, 30 tasks, and comments.
+
+---
+
+## Screen Recording & Demo Guide (Submission Video Outline)
+
+When recording your 3-5 minute demo video, follow this recommended walkthrough flow:
+
+1. **Authentication Flow (1 min)**:
+   - Demonstrate `/login` with credentials validation and password strength bar.
+   - Show direct access prevention (unauthenticated redirect to `/login`).
+   - Sign in and showcase automatic redirect to `/dashboard`.
+2. **Kanban Sprint Board (1.5 min)**:
+   - Drag and drop tasks between columns (Backlog to In Progress to Review to Done).
+   - Demonstrate the **Undo** toast action rolling back the last move.
+   - Click a task card to open the side drawer, edit details, and post a real-time comment.
+   - Use the filter controls to filter by Assignee and Priority.
+3. **Analytics Dashboard (1 min)**:
+   - Navigate to `/analytics` and demonstrate the 4 real-time Recharts visualizations.
+   - Change the sprint filter and click **Export PNG** to show chart image download.
+4. **Real-time Notifications & Architecture (30 sec)**:
+   - Highlight the polling notification bell badge.
+   - Briefly mention TanStack Query + Zustand architecture and pure Tailwind design system.
+
+---
+
+## Setup and Installation Instructions
+
+### Prerequisites
+- Node.js: `v18.0.0` or higher
+- Package Manager: `npm` (v9+) or `yarn`
+
+### Installation Steps
+```bash
+# 1. Clone the repository
+git clone https://github.com/himani1902/sprintdesk-dashboard.git
+
+# 2. Navigate to project root
+cd sprintdesk-dashboard
+
+# 3. Install dependencies
+npm install
+
+# 4. Start development server
+npm run dev
+```
+Open `http://localhost:5173/` in your browser.
+
+### Verification & Testing
+```bash
+# Run unit & integration test suites
+npm test
+
+# Run production build and TypeScript strict check
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+---
+
+## Security Practices
+
+- **Zero Committed Secrets**: No passwords, private tokens, or environment API keys are hardcoded or committed to git.
+- **In-Memory Access Tokens**: Access tokens are kept in JavaScript memory (`inMemoryAccessToken`) rather than localStorage to prevent persistent XSS exploitation.
+- **Automatic Session Invalidation**: Corrupted or expired refresh tokens automatically trigger a clean session reset and redirect to `/login`.
+
+---
+
 ## License
 This project is open-source and available under the [MIT License](LICENSE).
+
 

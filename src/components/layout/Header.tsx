@@ -29,6 +29,11 @@ export const Header: React.FC = () => {
     };
   }, [isProfileOpen]);
 
+  const userAvatar =
+    user?.image?.includes('dummyjson.com/icon') || !user?.image
+      ? 'https://i.pravatar.cc/150?img=47'
+      : user.image;
+
   const fullName = user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.username : 'Developer';
 
   return (
@@ -44,37 +49,35 @@ export const Header: React.FC = () => {
               <span className="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-slate-100 font-sans truncate">
                 SprintDesk
               </span>
-              <span className="hidden xs:inline-block px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-extrabold rounded-full bg-brand-100 text-brand-800 dark:bg-brand-950 dark:text-brand-300 border border-brand-200 dark:border-brand-900/60 shrink-0">
-                Enterprise
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-brand-900 dark:bg-brand-950 dark:text-brand-300 border border-orange-200 dark:border-brand-800 shrink-0">
+                Sprint 3
               </span>
             </div>
-            <div className="hidden sm:flex items-center gap-1.5 mt-0.5">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-              <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 truncate">
-                Sprint 3 — Active Workspace
-              </span>
-            </div>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium hidden sm:block">
+              Sprint 3 — Active Workspace
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Actions */}
+      {/* Global Actions, Notification Bell, Theme Switcher & User Profile */}
       <div className="flex items-center gap-1.5 sm:gap-3">
-        {/* Quick New Task Button */}
+        {/* Quick New Task Trigger Button */}
         <Button
           size="sm"
+          variant="primary"
           onClick={() => setCreateModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="hidden sm:inline-flex"
+          className="hidden sm:inline-flex shadow-sm shadow-brand-500/20"
         >
           New Task
         </Button>
 
-        {/* Theme Switcher */}
+        {/* Theme Toggle Button */}
         <button
           onClick={toggleTheme}
           className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500"
-          aria-label="Toggle dark mode"
+          aria-label="Toggle theme"
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
           {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
@@ -90,7 +93,7 @@ export const Header: React.FC = () => {
             className="flex items-center gap-2 p-1 rounded-full hover:bg-orange-50 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500"
             aria-label="User menu"
           >
-            <Avatar src={user?.image || 'https://i.pravatar.cc/150?img=47'} name={fullName} size="sm" />
+            <Avatar src={userAvatar} name={fullName} size="sm" />
             <span className="hidden md:inline-block text-xs font-semibold text-slate-700 dark:text-slate-200">
               {fullName}
             </span>
@@ -105,7 +108,7 @@ export const Header: React.FC = () => {
 
               <div className="p-1.5">
                 <div className="px-3 py-2 text-xs text-slate-600 dark:text-slate-400 flex items-center gap-2">
-                  <UserIcon className="w-4 h-4 text-brand-500" />
+                  <Avatar src={userAvatar} name={fullName} size="xs" />
                   <span>Lead Frontend Engineer</span>
                 </div>
                 <button

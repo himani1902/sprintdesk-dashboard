@@ -187,7 +187,7 @@ export const KanbanBoard: React.FC = () => {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
           {COLUMNS.map((col) => (
             <KanbanColumn
               key={col.id}
