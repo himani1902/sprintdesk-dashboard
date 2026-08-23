@@ -64,27 +64,25 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     set({ tasks: updatedTasks });
   },
 
-  moveTask: (taskId: string, targetStatus: TaskStatus, newIndex?: number) => {
+  moveTask: (
+    taskId: string,
+    targetStatus: TaskStatus,
+    newIndex?: number,
+    recordUndo = true,
+    customPreviousStatus?: TaskStatus,
+    customPreviousIndex?: number
+  ) => {
     const tasks = [...get().tasks];
     const taskIndex = tasks.findIndex((t) => t.id === taskId);
     if (taskIndex === -1) return;
 
     const task = tasks[taskIndex];
-    const previousStatus = task.status;
-    const previousIndex = tasks.filter((t) => t.status === previousStatus).findIndex((t) => t.id === taskId);
+    const previousStatus = customPreviousStatus ?? task.status;
+    const sameStatusPrevious = tasks.filter((t) => t.status === previousStatus);
+    const previousIndex = customPreviousIndex ?? sameStatusPrevious.findIndex((t) => t.id === taskId);
 
     // If same status and position didn't change, return
     if (previousStatus === targetStatus && newIndex === previousIndex) return;
-
-    // Record operation for UNDO capability
-    const undoOp: UndoOperation = {
-      taskId,
-      previousStatus,
-      newStatus: targetStatus,
-      previousIndex,
-      newIndex: newIndex ?? 0,
-      timestamp: Date.now(),
-    };
 
     // Remove task from array
     tasks.splice(taskIndex, 1);
@@ -92,7 +90,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     const updatedTask: SprintTask = {
       ...task,
       status: targetStatus,
-      completedAt: targetStatus === 'done' ? new Date().toISOString() : (previousStatus === 'done' ? null : task.completedAt),
+      completedAt: targetStatus === 'done' ? (task.completedAt || new Date().toISOString()) : (previousStatus === 'done' ? null : task.completedAt),
     };
 
     // Find all tasks with target status
@@ -108,10 +106,23 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     }
 
     storage.setItem(LOCAL_STORAGE_KEY, tasks);
-    set({
-      tasks,
-      undoStack: [undoOp, ...get().undoStack.slice(0, 9)], // keep last 10 undos
-    });
+
+    if (recordUndo && (previousStatus !== targetStatus || (newIndex !== undefined && previousIndex !== newIndex))) {
+      const undoOp: UndoOperation = {
+        taskId,
+        previousStatus,
+        newStatus: targetStatus,
+        previousIndex: previousIndex >= 0 ? previousIndex : 0,
+        newIndex: newIndex ?? targetStatusTasks.length,
+        timestamp: Date.now(),
+      };
+      set({
+        tasks,
+        undoStack: [undoOp, ...get().undoStack.slice(0, 9)], // keep last 10 undos
+      });
+    } else {
+      set({ tasks });
+    }
   },
 
   undoLastMove: (): boolean => {
@@ -130,7 +141,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       completedAt: lastOp.previousStatus === 'done' ? (task.completedAt || new Date().toISOString()) : null,
     };
 
-    // Insert back to target position
+    // Insert back to previous position in the previous column
     const sameStatusTasks = tasks.filter((t) => t.status === lastOp.previousStatus);
     if (lastOp.previousIndex >= 0 && lastOp.previousIndex < sameStatusTasks.length) {
       const refTask = sameStatusTasks[lastOp.previousIndex];

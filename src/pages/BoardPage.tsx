@@ -6,15 +6,25 @@ import { BoardFilters } from '../components/board/BoardFilters';
 import { Button } from '../components/ui/Button';
 import { Plus, RotateCcw } from 'lucide-react';
 
+import { useToast } from '../hooks/useToast';
+
 export const BoardPage: React.FC = () => {
-  const { isLoading } = useBoardTasks();
+  useBoardTasks();
   const { tasks, setCreateModalOpen, undoStack, undoLastMove } = useBoardStore();
+  const { success } = useToast();
 
   const totalTasks = tasks.length;
   const backlogCount = tasks.filter((t) => t.status === 'backlog').length;
   const inProgressCount = tasks.filter((t) => t.status === 'in_progress').length;
   const reviewCount = tasks.filter((t) => t.status === 'review').length;
   const doneCount = tasks.filter((t) => t.status === 'done').length;
+
+  const handleTopUndo = () => {
+    const undone = undoLastMove();
+    if (undone) {
+      success('Move Undone', 'Task restored to its previous position.');
+    }
+  };
 
   return (
     <div className="flex flex-col gap-6 animate-fade-in">
@@ -39,11 +49,11 @@ export const BoardPage: React.FC = () => {
             <Button
               size="sm"
               variant="outline"
-              onClick={undoLastMove}
+              onClick={handleTopUndo}
               leftIcon={<RotateCcw className="w-3.5 h-3.5" />}
               className="text-xs text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-700"
             >
-              Undo
+              Undo ({undoStack.length})
             </Button>
           )}
 

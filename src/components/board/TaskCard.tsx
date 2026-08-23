@@ -29,7 +29,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
   });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition,
   };
 
@@ -39,8 +39,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
     <div
       ref={setNodeRef}
       style={style}
+      {...attributes}
+      {...listeners}
       onClick={() => onSelect(task.id)}
-      className={`group relative w-full bg-white dark:bg-slate-900 border border-orange-100 dark:border-slate-800 rounded-xl p-4 shadow-xs hover:shadow-md hover:border-orange-300 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between select-none cursor-pointer ${
+      className={`group relative w-full bg-white dark:bg-slate-900 border border-orange-100 dark:border-slate-800 rounded-xl p-4 shadow-xs hover:shadow-md hover:border-orange-300 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between select-none cursor-grab active:cursor-grabbing touch-none ${
         isDragging ? 'opacity-30 border-dashed border-brand-500' : ''
       } ${isOverlay ? 'shadow-2xl border-brand-500 ring-2 ring-brand-500/20 rotate-1 cursor-grabbing z-50' : ''}`}
     >
@@ -48,22 +50,22 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onSelect, onDelete, is
         {/* Top Header: Priority Badge & Drag Handle & Delete */}
         <div className="flex items-center justify-between gap-2 mb-2.5">
           <Badge priority={task.priority} size="sm" />
-          <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
-            <button
-              {...attributes}
-              {...listeners}
-              className="p-1 text-slate-400 hover:text-brand-600 dark:hover:text-slate-200 cursor-grab active:cursor-grabbing rounded focus:outline-none focus:ring-2 focus:ring-brand-500 transition-colors"
+          <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()} onPointerDown={(e) => e.stopPropagation()}>
+            <span
+              className="p-1 text-slate-400 hover:text-brand-600 dark:hover:text-slate-200 rounded focus:outline-none transition-colors"
               aria-label={`Drag task ${task.id}`}
             >
               <GripVertical className="w-4 h-4" />
-            </button>
+            </span>
             {!isOverlay && (
               <button
+                type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   onDelete(task.id);
                 }}
-                className="p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                onPointerDown={(e) => e.stopPropagation()}
+                className="p-1 text-slate-400 hover:text-red-600 dark:hover:text-red-400 rounded focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors cursor-pointer"
                 aria-label={`Delete task ${task.id}`}
               >
                 <Trash2 className="w-3.5 h-3.5" />

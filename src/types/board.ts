@@ -81,7 +81,14 @@ export interface BoardState {
   setUsers: (users: UserAssignee[]) => void;
   addTask: (task: Omit<SprintTask, 'id' | 'createdAt' | 'comments'>) => SprintTask;
   updateTask: (id: string, updates: Partial<SprintTask>) => void;
-  moveTask: (taskId: string, targetStatus: TaskStatus, newIndex?: number) => void;
+  moveTask: (
+    taskId: string,
+    targetStatus: TaskStatus,
+    newIndex?: number,
+    recordUndo?: boolean,
+    customPreviousStatus?: TaskStatus,
+    customPreviousIndex?: number
+  ) => void;
   deleteTask: (id: string) => void;
   addComment: (taskId: string, content: string, authorName: string, authorAvatar: string) => void;
   setFilter: (key: keyof BoardFilterState, value: string) => void;

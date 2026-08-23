@@ -109,6 +109,7 @@ The `/analytics` page derives real-time metrics dynamically from the active boar
 sprintdesk-dashboard/
 |-- public/
 |   |-- favicon.svg
+|   |-- icons.svg
 |   `-- mock-data.json          # Primary initial dataset (Users, Sprints, 30 Tasks, Comments, Notifications)
 |-- src/
 |   |-- api/                    # Centralized API service layer
@@ -174,8 +175,6 @@ npm run build
 
 ---
 
----
-
 ## Submission Details
 
 | Field | Submission Value |
@@ -183,7 +182,7 @@ npm run build
 | **Candidate Name** | Himani |
 | **Role Applied** | Frontend Engineer |
 | **GitHub Repository** | [https://github.com/himani1902/sprintdesk-dashboard](https://github.com/himani1902/sprintdesk-dashboard) |
-| **Live Deployment** | [https://sprintdesk-dashboard.vercel.app](https://sprintdesk-dashboard.vercel.app) |
+| **Live Deployment** | [https://sprintdesk-dashboard.vercel.app](https://sprintdesk-dashboard.vercel.app/) |
 
 ### Demo Credentials
 
@@ -373,5 +372,7 @@ npm run preview
 
 ## License
 This project is open-source and available under the [MIT License](LICENSE).
+
+
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   DndContext,
   DragOverlay,
@@ -44,6 +44,7 @@ export const KanbanBoard: React.FC = () => {
 
   const [activeTask, setActiveTask] = useState<SprintTask | null>(null);
   const [taskToDeleteId, setTaskToDeleteId] = useState<string | null>(null);
+  const dragOriginRef = useRef<{ id: string; status: TaskStatus; index: number } | null>(null);
 
   // Configure DND Sensors (Mouse/Touch + Keyboard Accessibility)
   const sensors = useSensors(
@@ -93,6 +94,9 @@ export const KanbanBoard: React.FC = () => {
     const task = tasks.find((t) => t.id === active.id);
     if (task) {
       setActiveTask(task);
+      const columnTasks = tasks.filter((t) => t.status === task.status);
+      const idx = columnTasks.findIndex((t) => t.id === task.id);
+      dragOriginRef.current = { id: task.id, status: task.status, index: idx };
     }
   };
 
@@ -103,7 +107,8 @@ export const KanbanBoard: React.FC = () => {
     const activeId = active.id as string;
     const overId = over.id as string;
 
-    // Find active task
+    if (activeId === overId) return;
+
     const activeTaskItem = tasks.find((t) => t.id === activeId);
     if (!activeTaskItem) return;
 
@@ -112,7 +117,7 @@ export const KanbanBoard: React.FC = () => {
     if (isOverColumn) {
       const overStatus = overId as TaskStatus;
       if (activeTaskItem.status !== overStatus) {
-        moveTask(activeId, overStatus);
+        moveTask(activeId, overStatus, undefined, false);
       }
       return;
     }
@@ -120,7 +125,7 @@ export const KanbanBoard: React.FC = () => {
     // Is over another task?
     const overTaskItem = tasks.find((t) => t.id === overId);
     if (overTaskItem && activeTaskItem.status !== overTaskItem.status) {
-      moveTask(activeId, overTaskItem.status);
+      moveTask(activeId, overTaskItem.status, undefined, false);
     }
   };
 
@@ -128,7 +133,10 @@ export const KanbanBoard: React.FC = () => {
     const { active, over } = event;
     setActiveTask(null);
 
-    if (!over) return;
+    const origin = dragOriginRef.current;
+    dragOriginRef.current = null;
+
+    if (!over || !origin) return;
 
     const activeId = active.id as string;
     const overId = over.id as string;
@@ -140,19 +148,21 @@ export const KanbanBoard: React.FC = () => {
 
     if (isOverColumn) {
       const targetStatus = overId as TaskStatus;
-      if (activeTaskItem.status !== targetStatus) {
-        moveTask(activeId, targetStatus);
+      moveTask(activeId, targetStatus, undefined, true, origin.status, origin.index);
+      if (origin.status !== targetStatus) {
         triggerUndoToast(activeId, targetStatus);
       }
     } else {
       const overTaskItem = tasks.find((t) => t.id === overId);
       if (overTaskItem) {
         const targetStatus = overTaskItem.status;
-        const columnTasks = getTasksByStatus(targetStatus);
+        const columnTasks = tasks.filter((t) => t.status === targetStatus);
         const overIndex = columnTasks.findIndex((t) => t.id === overId);
 
-        moveTask(activeId, targetStatus, overIndex);
-        triggerUndoToast(activeId, targetStatus);
+        moveTask(activeId, targetStatus, overIndex, true, origin.status, origin.index);
+        if (origin.status !== targetStatus || origin.index !== overIndex) {
+          triggerUndoToast(activeId, targetStatus);
+        }
       }
     }
   };
@@ -161,12 +171,12 @@ export const KanbanBoard: React.FC = () => {
     toast({
       type: 'info',
       title: 'Task Moved',
-      description: `Moved ${taskId} to ${targetStatus.replace('_', ' ')}.`,
+      description: `Task ${taskId} moved to ${targetStatus.replace('_', ' ')}.`,
       actionLabel: 'Undo Drag',
       onAction: () => {
         undoLastMove();
       },
-      duration: 5000,
+      duration: 6000,
     });
   };
 
