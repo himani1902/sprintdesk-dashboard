@@ -183,8 +183,7 @@ npm run build
 | **Candidate Name** | Himani |
 | **Role Applied** | Frontend Engineer |
 | **GitHub Repository** | [https://github.com/himani1902/sprintdesk-dashboard](https://github.com/himani1902/sprintdesk-dashboard) |
-| **Live Deployment** | [https://sprintdesk-dashboard.vercel.app](https://sprintdesk-dashboard.vercel.app) *(or your deployment URL)* |
-| **Screen Recording Demo** | [Video Walkthrough Link](https://loom.com/...) *(Add your Loom/Drive link)* |
+| **Live Deployment** | [https://sprintdesk-dashboard.vercel.app](https://sprintdesk-dashboard.vercel.app) |
 
 ### Demo Credentials
 
