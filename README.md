@@ -325,27 +325,7 @@ Provides initial seed data for 6 team members, 3 sprints, 30 tasks, and comments
 
 ---
 
-## Screen Recording & Demo Guide (Submission Video Outline)
 
-When recording your 3-5 minute demo video, follow this recommended walkthrough flow:
-
-1. **Authentication Flow (1 min)**:
-   - Demonstrate `/login` with credentials validation and password strength bar.
-   - Show direct access prevention (unauthenticated redirect to `/login`).
-   - Sign in and showcase automatic redirect to `/dashboard`.
-2. **Kanban Sprint Board (1.5 min)**:
-   - Drag and drop tasks between columns (Backlog to In Progress to Review to Done).
-   - Demonstrate the **Undo** toast action rolling back the last move.
-   - Click a task card to open the side drawer, edit details, and post a real-time comment.
-   - Use the filter controls to filter by Assignee and Priority.
-3. **Analytics Dashboard (1 min)**:
-   - Navigate to `/analytics` and demonstrate the 4 real-time Recharts visualizations.
-   - Change the sprint filter and click **Export PNG** to show chart image download.
-4. **Real-time Notifications & Architecture (30 sec)**:
-   - Highlight the polling notification bell badge.
-   - Briefly mention TanStack Query + Zustand architecture and pure Tailwind design system.
-
----
 
 ## Setup and Installation Instructions
 
